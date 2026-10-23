@@ -1,0 +1,15 @@
+compact: true
+quiet: true
+framework:
+  - terraform
+
+# Examples are demonstration configs - not production hardened.
+# Strict security checks run only on the module root.
+skip-path:
+  - examples/
+
+# Uncomment to suppress known false positives for this module.
+# Reference: https://www.checkov.io/5.Policy%20Index/terraform.html
+#
+# skip-check:
+#   - CKV_TF_1   # Allow tag-based module source pinning instead of commit hash
