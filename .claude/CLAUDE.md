@@ -21,6 +21,7 @@ make lint       # tflint --config=.tflint.hcl
 make checkov    # checkov security scan
 make validate   # terraform init -backend=false && terraform validate
 make docs       # regenerate README terraform-docs section (do not hand-edit it)
+make test       # unit tests in tests/ against a mock provider (Terraform 1.7+)
 make pre-commit # all pre-commit hooks against all files
 ```
 
@@ -30,9 +31,9 @@ The README's Requirements/Providers/Inputs/Outputs tables between the `BEGIN_TF_
 
 1. Branch from `main`.
 2. Make the change; update or add `examples/` when the module API changes.
-3. `make fmt lint checkov` clean, `make docs` regenerated, `CHANGELOG.md` updated under `[Unreleased]`.
+3. `make fmt lint checkov test` clean, `make docs` regenerated, `CHANGELOG.md` updated under `[Unreleased]`.
 4. Conventional commit message.
-5. Open a PR; CI runs pre-commit and checkov and must pass.
+5. Open a PR; CI runs pre-commit (including the README docs check), checkov and terraform test, and all must pass.
 
 ## Terraform conventions
 
