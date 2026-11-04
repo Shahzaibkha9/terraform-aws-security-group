@@ -11,7 +11,8 @@ All notable changes to this module are documented here. The format follows [Keep
 - `ingress_rules` and `egress_rules` object types with four source / destination fields (`cidr_ipv4`, `cidr_ipv6`, `prefix_list_id`, `referenced_security_group_id`) and a one-of validation.
 - Separate rule resources (`aws_vpc_security_group_ingress_rule`, `aws_vpc_security_group_egress_rule`) instead of legacy inline blocks so each rule has its own `security_group_rule_id`, description, and tags.
 - `revoke_rules_on_delete` variable for SGs attached to AWS services that add rules outside Terraform (e.g. EMR).
-- Variable validations for `name` format and length, non-empty `description`, port range (`-1` to `65535`), and `ip_protocol` + port semantics (`-1` / `icmpv6` can omit ports).
+- Variable validations for `name` (length 1-228, AWS-permitted characters including spaces and the usual punctuation, cannot start with the reserved `sg-` prefix), non-empty `description`, port range (`-1` to `65535`), and `ip_protocol` + port semantics: `-1` and `icmpv6` can omit ports, `-1` protocol must leave ports unset, `from_port` must be `<=` `to_port` on non-ICMP rules, and port `-1` is only valid for ICMP or ICMPv6.
+- Inline `checkov:skip=CKV2_AWS_5` on `aws_security_group.this` (callers attach the SG to downstream resources via `output "id"`; attachment cannot be demonstrated inside the module).
 - `create` guard that produces no resources when `create = false`.
 - `tags` merged into the SG and into every rule, with per-rule `tags` overlay support.
 - `examples/minimal` (single ingress rule) and `examples/complete` (all four source types + per-rule tags) usage examples.

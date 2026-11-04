@@ -1,4 +1,5 @@
 resource "aws_security_group" "this" {
+  # checkov:skip=CKV2_AWS_5: Module exports id via output "id" for callers to attach to downstream resources (EC2, ALB, RDS, etc.). Attachment happens in the caller and cannot be demonstrated inside the module.
   count = var.create ? 1 : 0
 
   # name_prefix (not name) so create_before_destroy replacements do not
