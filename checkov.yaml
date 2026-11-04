@@ -7,4 +7,3 @@ framework:
 # Strict security checks run only on the module root.
 skip-path:
   - examples/
-

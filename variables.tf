@@ -153,7 +153,7 @@ variable "egress_rules" {
   description = <<-EOT
     Map of egress rules. Key is a logical name referenced in outputs and tags.
     Exactly one destination must be set per rule: cidr_ipv4, cidr_ipv6, prefix_list_id, or referenced_security_group_id.
-    Defaults to an empty map (no egress allowed - deny-all by default). AWS removes the default allow-all egress on creation.
+    Defaults to an empty map (no egress allowed - deny-all by default). The EC2 API attaches an "allow all" egress to every new VPC security group; Terraform removes it on creation and never re-adds it.
 
     Example (allow all outbound):
       egress_rules = {
