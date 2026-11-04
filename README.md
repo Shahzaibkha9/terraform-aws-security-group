@@ -151,7 +151,7 @@ Egress to AWS services (S3, DynamoDB, STS, etc.) belongs in a `prefix_list_id` r
 
 | Name | Version |
 | ---- | ------- |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.70.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.0.0 |
 
 ## Modules
 

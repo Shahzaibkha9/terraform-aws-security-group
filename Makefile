@@ -26,7 +26,7 @@ checkov: ## Run checkov security scan
 	checkov --config-file checkov.yaml -d .
 
 docs: ## Generate terraform-docs README
-	terraform-docs markdown table --output-file README.md --output-mode inject .
+	terraform-docs markdown table --lockfile=false --output-file README.md --output-mode inject .
 
 pre-commit: ## Run all pre-commit hooks against all files
 	SKIP=no-commit-to-branch pre-commit run --all-files
