@@ -8,8 +8,7 @@ framework:
 skip-path:
   - examples/
 
-# Uncomment to suppress known false positives for this module.
-# Reference: https://www.checkov.io/5.Policy%20Index/terraform.html
-#
-# skip-check:
-#   - CKV_TF_1   # Allow tag-based module source pinning instead of commit hash
+# Every skip below has been verified by running checkov with the skip removed
+# and confirming the check actually fires.
+skip-check:
+  - CKV2_AWS_5  # The module exports the security group ID via `output "id"` for callers to attach to downstream resources (EC2, ALB, RDS, etc.). Attachment happens outside the module and cannot be demonstrated here.
